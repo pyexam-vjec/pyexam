@@ -1,21 +1,21 @@
-import numpy as np 
-from scipy import stats 
-np.random.seed(42) 
-ratings = np.round(np.random.normal(loc=4.0, scale=0.2, size=15), 1) 
-ratings = np.clip(ratings, 1, 5) 
-t_stat, p_value_two_tailed = stats.ttest_1samp(ratings, mu_0 = 3.8) 
-if t_stat > 0: 
- p_value_one_tailed = p_value_two_tailed / 2 
-else: 
- p_value_one_tailed = 1 - (p_value_two_tailed / 2) 
-print("HR Sample Ratings (15 employees):", ratings.tolist()) 
-print("Sample Mean:", round(np.mean(ratings), 3)) 
-print("Sample Std Dev:", round(np.std(ratings, ddof=1), 3)) 
-print("t-statistic:", round(t_stat, 4)) 
-print("One-tailed p-value:", round(p_value_one_tailed, 4)) 
-if p_value_one_tailed < alpha = 0.05: 
- print("Conclusion: Reject H0 -> HR productivity is significantly" 
- " higher than company average.") 
-else: 
- print("Conclusion: Fail to reject H0 -> No significant evidence HR" 
- " productivity is higher.")
+import numpy as np
+from scipy import stats
+
+np.random.seed(42)
+ratings = np.round(np.random.normal(loc=4.0, scale=0.2, size=15), 1)
+ratings = np.clip(ratings, 1, 5)
+t_stat, p_value_two_tailed = stats.ttest_1samp(ratings, 3.8)
+if t_stat > 0:
+    p_value_one_tailed = p_value_two_tailed / 2
+else:
+    p_value_one_tailed = 1 - (p_value_two_tailed / 2)
+print("HR Sample Ratings (15 employees):", ratings.tolist())
+print("Sample Mean:", round(np.mean(ratings), 3))
+print("Sample Std Dev:", round(np.std(ratings, ddof=1), 3))
+print("t-statistic:", round(t_stat, 4))
+print("One-tailed p-value:", round(p_value_one_tailed, 4))
+alpha = 0.05
+if p_value_one_tailed < alpha:
+    print("Conclusion: Reject H0 -> HR productivity is significantly higher than company average.")
+else:
+    print("Conclusion: Fail to reject H0 -> No significant evidence HR productivity is higher.")
