@@ -1,26 +1,21 @@
 import numpy as np
 from scipy.stats import chi2_contingency
 
-# Observed frequency table: rows = Gender (Female, Male), columns = Education levels
 observed = np.array([
-
-[60, 54, 46, 41], # Female
-[40, 44, 53, 57] # Male
+    [60, 54, 46, 41],
+    [40, 44, 53, 57]
 ])
-# Perform Chi-Square Test of Independence
+
 chi2, p, dof, expected = chi2_contingency(observed)
 
-# Print results
 print("Chi-Square Statistic:", round(chi2, 2))
 print("Degrees of Freedom:", dof)
 print("P-value:", round(p, 4))
 print("\nExpected Frequencies:\n", expected)
 
-# Significance level
 alpha = 0.05
 
-# Hypothesis testing
 if p < alpha:
-print("\nConclusion: Reject H0 -> Gender and Education are dependent.")
+    print("\nConclusion: Reject H0 -> Gender and Education are dependent.")
 else:
-print("\nConclusion: Fail to Reject H0 -> Gender and Education are independent.")
+    print("\nConclusion: Fail to Reject H0 -> Gender and Education are independent.")
