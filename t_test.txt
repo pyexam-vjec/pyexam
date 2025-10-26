@@ -1,35 +1,20 @@
 import numpy as np
 from scipy import stats
 
-# Given data
-n = 16 # Sample size
-sample_mean = 22 # Sample mean
-sample_sd = 3 # Sample standard deviation
-mu0 = 20 # Population mean (H0)
-
-# Standard Error
+n = 16
+sample_mean = 22
+sample_sd = 3
+mu0 = 20
 SE = sample_sd / np.sqrt(n)
-
-# t-statistic
 t_stat = (sample_mean - mu0) / SE
-
-# Degrees of freedom
 df = n - 1
-
-# One-tailed p-value
 p_value = 1 - stats.t.cdf(t_stat, df=df)
-
-# Critical t-value (one-tailed, alpha = 0.05)
 t_crit = stats.t.ppf(0.95, df)
-
-# Output
 print(f"t-statistic = {t_stat:.4f}")
 print(f"Degrees of freedom = {df}")
 print(f"Critical t (one-tailed, alpha=0.05) = {t_crit:.4f}")
 print(f"One-tailed p-value = {p_value:.4f}")
-
-# Hypothesis testing
 if t_stat > t_crit:
-print("Reject H0: The new trucks have significantly higher MPG than 20.")
+    print("Reject H0: The new trucks have significantly higher MPG than 20.")
 else:
-print("Fail to reject H0: No significant improvement.")
+    print("Fail to reject H0: No significant improvement.")
