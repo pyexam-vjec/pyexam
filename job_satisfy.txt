@@ -1,17 +1,18 @@
-import numpy as np 
-from sklearn.linear_model import LinearRegression 
-from sklearn.metrics import mean_squared_error 
-x=np.array([34,23,19,43,56,47,32,16,55,25]).reshape(-1,1) 
-y=np.array([124,128,157,133,136,125,147,167,110,156]) 
-model=LinearRegression() 
-model.fit(x,y) 
-intercept=model.intercept_ 
-slope=model.coef_[0] 
-predicted_bp=model.predict([[15]])[0] 
-y_pred=model.predict(x) 
-sse=np.sum((y-y_pred)**2) 
-n=len(y)
-SEE=np.sqrt(sse/(n-2)) 
-print(f"Regression equation:y={intercept:.3f}+({slope:.3f})*x") 
-print(f"predicted systolic BP when job satisfaction=15:{predicted_bp:.2f}") 
-print(f"standard error of estimate:{SEE:.3f}")
+import numpy as np
+from sklearn.linear_model import LinearRegression
+from sklearn.metrics import mean_squared_error
+
+x = np.array([34, 23, 19, 43, 56, 47, 32, 16, 55, 25]).reshape(-1, 1)
+y = np.array([124, 128, 157, 133, 136, 125, 147, 167, 110, 156])
+model = LinearRegression()
+model.fit(x, y)
+intercept = model.intercept_
+slope = model.coef_[0]
+predicted_bp = model.predict([[15]])[0]
+y_pred = model.predict(x)
+sse = np.sum((y - y_pred)**2)
+n = len(y)
+SEE = np.sqrt(sse / (n - 2))
+print(f"Regression equation: y = {intercept:.3f} + ({slope:.3f}) * x")
+print(f"Predicted systolic BP when job satisfaction = 15: {predicted_bp:.2f}")
+print(f"Standard error of estimate: {SEE:.3f}")
