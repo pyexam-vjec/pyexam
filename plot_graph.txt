@@ -1,26 +1,16 @@
-# Plot a graph y = f(x)
 import matplotlib.pyplot as plt
 import numpy as np
 
-# Define the function f(x)
 def f(x):
-return x**2 # must be indented properly
+    return x**2
 
-# Create x values (from -10 to 10 with 200 points)
 x = np.linspace(-10, 10, 200)
-
-# Calculate y values
 y = f(x)
 
-# Plot the graph
-plt.plot(x, y, label="y = x2", color="blue")
-
-# Add labels and title
+plt.plot(x, y, label="y = x^2", color="blue")
 plt.xlabel("x")
 plt.ylabel("y")
 plt.title("Graph of y = f(x)")
 plt.legend()
 plt.grid(True)
-
-# Show the plot
 plt.show()
