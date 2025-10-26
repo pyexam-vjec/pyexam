@@ -1,17 +1,11 @@
 import matplotlib.pyplot as plt
-# Data: Continent names and their areas (in million sq. miles)
-continents = ["Africa", "Asia", "Europe",
-"North America", "Oceania",
-"South America", "Soviet Union"]
-areas = [11.7, 10.4, 1.9, 9.4, 3.3, 6.9, 7.9]
-# Create bar chart
-plt.bar(continents, areas, color="skyblue", edgecolor="black")
-# Add labels and title
-plt.xlabel("Continents")
 
+continents = ["Africa", "Asia", "Europe", "North America", "Oceania", "South America", "Soviet Union"]
+areas = [11.7, 10.4, 1.9, 9.4, 3.3, 6.9, 7.9]
+
+plt.bar(continents, areas, color="skyblue", edgecolor="black")
+plt.xlabel("Continents")
 plt.ylabel("Area (million sq. miles)")
 plt.title("Areas of Continents")
-# Show grid (optional)
 plt.grid(axis="y", linestyle="--", alpha=0.7)
-# Display chart
 plt.show()
