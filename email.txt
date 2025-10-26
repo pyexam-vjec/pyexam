@@ -1,9 +1,6 @@
 import re
-# Step 3: Take email input
 email = input("Enter the email address: ")
-# Step 4: Define regex pattern
 pattern = r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$'
-# Step 5: Match email against pattern
 if re.match(pattern, email):
 
 print("Valid email format")
