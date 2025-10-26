@@ -1,0 +1,20 @@
+# Write numbers to file
+f = open("numbers.txt", "w")
+f.write("1 2 3 4 5 6 7 8 9 23 37 45 101 67")
+f.close()
+# Function to check prime
+def is_prime(num):
+if num <= 1: # fixed spacing "< ="
+return False
+for i in range(2, int(num**0.5) + 1): # loop to sqrt(num)
+
+if num % i == 0:
+return False
+return True
+# Read numbers from file
+with open("numbers.txt", "r") as file:
+numbers = list(map(int, file.read().split())) # split numbers
+print("Prime numbers in the file are:")
+for n in numbers:
+if is_prime(n):
+print(n)

@@ -1,0 +1,30 @@
+import numpy as np
+import pandas as pd
+from sklearn.linear_model import LogisticRegression
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import accuracy_score
+data = {
+"Age": [22, 25, 47, 52, 46, 56, 28, 35],
+"Salary": [25000, 32000, 50000, 60000, 58000, 52000, 30000, 45000],
+"Purchased": [0, 0, 1, 1, 1, 1, 0, 1]
+}
+df = pd.DataFrame(data)
+X = df[["Age", "Salary"]]
+y = df["Purchased"]
+X_train, X_test, y_train, y_test = train_test_split(
+X, y, test_size=0.25, random_state=42
+)
+
+model = LogisticRegression()
+model.fit(X_train, y_train)
+y_pred = model.predict(X_test)
+accuracy = accuracy_score(y_test, y_pred)
+print("Model Accuracy:", round(accuracy * 100, 2), "%")
+age = int(input("Enter Age: "))
+salary = int(input("Enter Salary: "))
+new_data = np.array([[age, salary]])
+prediction = model.predict(new_data)[0]
+if prediction == 1:
+print("The person is likely to BUY the product")
+else:
+print("The person is NOT likely to buy the product")

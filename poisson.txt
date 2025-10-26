@@ -1,0 +1,6 @@
+from scipy.stats import poisson
+
+# Probability of exactly 6 occurrences (X = 6) with mean mu = 3.4
+a = poisson.pmf(k=6, mu=3.4)
+
+print(f"The probability of X=6 for a Poisson distribution with mean 3.4 is: {a:.4f}")

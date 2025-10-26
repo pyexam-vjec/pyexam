@@ -1,0 +1,17 @@
+import matplotlib.pyplot as plt
+# Class boundaries of intervals
+heights = [135, 140, 145, 150, 155] # boundaries
+# Frequencies of students in each interval
+students = [4, 12, 16, 8]
+# Calculate class midpoints for bars
+midpoints = [(heights[i] + heights[i+1]) / 2 for i in range(len(heights)-1)]
+
+# Plot histogram (frequency distribution)
+plt.bar(midpoints, students, width=5, edgecolor="black", color="skyblue")
+# Add labels and title
+plt.xlabel("Height of Students (cm)")
+plt.ylabel("Number of Students")
+plt.title("Histogram of Students' Heights")
+plt.grid(axis="y", linestyle="--", alpha=0.7)
+# Show plot
+plt.show()

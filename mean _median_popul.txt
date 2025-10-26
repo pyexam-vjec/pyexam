@@ -1,0 +1,12 @@
+import numpy as np
+
+population = np.array([4779736, 710231, 6392017, 2915918,
+37253956, 5029196, 3574097, 89924])
+
+mean = np.mean(population)
+median = np.median(population)
+variance = np.var(population)
+
+print("Mean =", round(mean, 2))
+print("Median =", round(median, 2))
+print("Variance =", round(variance, 2))

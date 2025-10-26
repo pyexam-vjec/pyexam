@@ -1,0 +1,9 @@
+from scipy.stats import binom
+
+# a) Probability of exactly 4 successes
+a = binom.pmf(k=4, n=6, p=0.25)
+print(f"The probability of exactly 4 successes is: {a:.4f}")
+
+# b) Probability of at least one success
+b = 1 - binom.pmf(k=0, n=6, p=0.25)
+print(f"The probability of at least one success is: {b:.4f}")

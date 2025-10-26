@@ -1,0 +1,23 @@
+import numpy as np
+# Class intervals
+classes = [(0, 10), (10, 20), (20, 30), (30, 40),
+(40, 50), (50, 60), (60, 70), (70, 80)]
+# Frequencies
+
+frequencies = np.array([5, 10, 20, 40, 30, 20, 10, 5])
+# Calculate midpoints of classes
+midpoints = np.array([(a + b) / 2 for a, b in classes])
+# Total frequency
+N = frequencies.sum()
+
+# Mean
+mean = np.sum(frequencies * midpoints) / N
+
+# Variance
+variance = np.sum(frequencies * (midpoints - mean)**2) / N
+
+# Standard Deviation
+std_dev = np.sqrt(variance)
+
+# Coefficient of Variation
+cv = (std_dev / mean) * 100

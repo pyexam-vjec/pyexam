@@ -1,0 +1,95 @@
+import numpy as np
+import scipy.stats as stats
+import matplotlib.pyplot as plt
+import seaborn as sns
+
+# Set random seed for reproducibility (remove in actual analysis)
+np.random.seed(42)
+
+# Sample data - REPLACE THIS WITH YOUR ACTUAL DATA
+# I'm generating sample data for demonstration
+# Let's assume we have ratings from 15 HR employees
+hr_ratings = np.array([4.2, 3.9, 4.5, 3.8, 4.1, 4.3, 3.7, 4.6, 4.0, 4.4, 3.9, 4.2, 4.1, 4.3, 4.0])
+
+# Company mean
+company_mean = 3.8
+
+print("=== HR Department Productivity Analysis ===\n")
+print(f"Company-wide mean: {company_mean}")
+print(f"Sample size: {len(hr_ratings)}")
+print(f"HR department sample mean: {hr_ratings.mean():.3f}")
+print(f"HR department sample std: {hr_ratings.std():.3f}")
+print(f"HR department ratings: {hr_ratings}")
+
+# Perform one-sample t-test
+t_statistic, p_value = stats.ttest_1samp(hr_ratings, company_mean, alternative='greater')
+
+print(f"\n=== Hypothesis Test Results ===")
+print(f"T-statistic: {t_statistic:.4f}")
+print(f"P-value: {p_value:.4f}")
+
+# Determine significance
+alpha = 0.05  # Common significance level
+print(f"\nSignificance level (α): {alpha}")
+
+if p_value < alpha:
+    print("Result: REJECT the null hypothesis")
+    print("Conclusion: There is significant evidence that HR department productivity is higher than the company average.")
+else:
+    print("Result: FAIL TO REJECT the null hypothesis")
+    print("Conclusion: There is not enough evidence that HR department productivity is higher than the company average.")
+
+# Calculate confidence interval
+confidence_level = 0.95
+df = len(hr_ratings) - 1  # degrees of freedom
+std_err = hr_ratings.std() / np.sqrt(len(hr_ratings))
+t_critical = stats.t.ppf((1 + confidence_level) / 2, df)
+ci_lower = hr_ratings.mean() - t_critical * std_err
+ci_upper = hr_ratings.mean() + t_critical * std_err
+
+print(f"\n=== Additional Statistics ===")
+print(f"95% Confidence Interval for HR mean: ({ci_lower:.3f}, {ci_upper:.3f})")
+print(f"Standard Error: {std_err:.3f}")
+print(f"Degrees of Freedom: {df}")
+
+# Visualization
+plt.figure(figsize=(12, 4))
+
+# Plot 1: Sample distribution with company mean
+plt.subplot(1, 2, 1)
+sns.histplot(hr_ratings, kde=True, alpha=0.7)
+plt.axvline(company_mean, color='red', linestyle='--', linewidth=2, label=f'Company Mean ({company_mean})')
+plt.axvline(hr_ratings.mean(), color='blue', linestyle='--', linewidth=2, label=f'Sample Mean ({hr_ratings.mean():.2f})')
+plt.xlabel('Productivity Rating')
+plt.ylabel('Frequency')
+plt.title('Distribution of HR Department Ratings')
+plt.legend()
+
+# Plot 2: Confidence interval
+plt.subplot(1, 2, 2)
+plt.errorbar(x=1, y=hr_ratings.mean(), yerr=t_critical*std_err, 
+             fmt='o', capsize=5, capthick=2, markersize=8, label='HR Mean ± 95% CI')
+plt.axhline(company_mean, color='red', linestyle='--', label=f'Company Mean ({company_mean})')
+plt.xlim(0.5, 1.5)
+plt.ylim(3.5, 4.5)
+plt.ylabel('Productivity Rating')
+plt.title('Comparison with Company Mean')
+plt.legend()
+plt.xticks([])
+
+plt.tight_layout()
+plt.show()
+
+# Effect size calculation (Cohen's d)
+effect_size = (hr_ratings.mean() - company_mean) / hr_ratings.std()
+print(f"\nEffect Size (Cohen's d): {effect_size:.3f}")
+
+# Interpret effect size
+if abs(effect_size) < 0.2:
+    effect_magnitude = "small"
+elif abs(effect_size) < 0.8:
+    effect_magnitude = "medium"
+else:
+    effect_magnitude = "large"
+
+print(f"Effect magnitude: {effect_magnitude}")

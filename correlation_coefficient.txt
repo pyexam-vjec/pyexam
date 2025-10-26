@@ -1,0 +1,11 @@
+import numpy as np
+
+# Sample data
+hand = np.array([17, 15, 19, 17, 21]) # Hand span (cm)
+height = np.array([150, 154, 169, 172, 175]) # Height (cm)
+
+# Calculate correlation coefficient
+corr = np.corrcoef(hand, height)[0, 1]
+
+# Output
+print("Correlation Coefficient (r) =", round(corr, 4))
